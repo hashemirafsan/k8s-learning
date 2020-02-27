@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloworld.k8s.com
+  labels:
+    app: helloworld
+spec:
+  containers:
+  - name: docker-demo
+    image: hashemirafsan/docker-demo
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 3000
