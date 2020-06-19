@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: hashemirafsan/docker-demo
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+        volumeMounts:
+          - name: cred-volume
+            mountPath: /etc/creds
+            readOnly: true
+      volumes:
+        - name: cred-volume
+          secret:
+              secretName: db-secrets

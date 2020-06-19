@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  hello-world-service
+spec:
+  selector:
+    app:  hello-world
+  type:  NodePort
+  ports:
+  - name:  hello-world
+    port:  31001
+    targetPort:  nodejs-port
+    protocol: TCP
